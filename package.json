@@ -1,17 +1,40 @@
 {
-    "buildNpmdoc":"findit",
+    "author": "kai zhu <kaizhu256@gmail.com>",
+    "buildNpmdoc": "findit",
+    "description": "api documentation for [findit (v2.0.0)](https://github.com/substack/node-findit) [![npm package](https://img.shields.io/npm/v/npmdoc-findit.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-findit) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-findit.svg)](https://travis-ci.org/npmdoc/node-npmdoc-findit)",
     "devDependencies": {
-        "findit": "*",
         "electron-lite": "kaizhu256/node-electron-lite#alpha",
+        "findit": "*",
         "utility2": "kaizhu256/node-utility2#alpha"
     },
-    "name":"npmdoc-findit",
+    "engines": {
+        "node": ">=4.0"
+    },
+    "homepage": "https://github.com/npmdoc/node-npmdoc-findit",
+    "keywords": [
+        "documentation",
+        "findit"
+    ],
+    "license": "MIT",
+    "main": "lib.npmdoc_findit.js",
+    "name": "npmdoc-findit",
+    "nameAlias": "npmdoc_findit",
+    "nameOriginal": "npmdoc-findit",
+    "os": [
+        "darwin",
+        "linux"
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/npmdoc/node-npmdoc-findit"
     },
     "scripts": {
-        "build-ci": "utility2 shReadmeTest build_ci.sh"
+        "build-ci": "utility2 shReadmeTest build_ci.sh",
+        "env": "env",
+        "heroku-postbuild": "(set -e; npm install \"kaizhu256/node-utility2#alpha\"; utility2 shDeployHeroku)",
+        "postinstall": "if [ -f npm_scripts.sh ]; then ./npm_scripts.sh postinstall; fi",
+        "start": "(set -e; export PORT=${PORT:-8080}; utility2 start test.js)",
+        "test": "(set -e; export PORT=$(utility2 shServerPortRandom); utility2 test test.js)"
     },
     "version": "0.0.1"
 }
