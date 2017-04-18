@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/substack/node-findit"
-
-    >findit (v2.0.0)</a>
+    <a href="https://github.com/substack/node-findit">findit (v2.0.0)</a>
 </h1>
 <h4>walk a directory tree recursively with events</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.findit">module findit</a><ol>
 
@@ -95,7 +88,7 @@
         emitter = new EventEmitter;
         emitter.stop = function () {
             emitter._stopped = true;
-            emitter.emit(&#x27;stop&#x27;);
+            emitter.emit('stop');
         };
         emitter._pending = 0;
         emitter._seen = {};
@@ -103,10 +96,10 @@
 
     if (dstat) {
         var stopped = false;
-        emitter.emit(&#x27;directory&#x27;, fdir, dstat, function stop () {
+        emitter.emit('directory', fdir, dstat, function stop () {
             stopped = true;
         });
-        emitter.emit(&#x27;path&#x27;, fdir, dstat);
+        emitter.emit('path', fdir, dstat);
         if (!stopped) {
             emitter._pending ++;
             fs.readdir(dir, function (err, files) {
@@ -128,24 +121,24 @@
 
         if (err) {
             if (!err.path) err.path = dir;
-            emitter.emit(&#x27;error&#x27;, err);
+            emitter.emit('error', err);
             return check();
         }
         emitter._seen[stat.ino || dir] = true;
 
-        if (stat.isSymbolicLink() &#x26;&#x26; opts.followSymlinks) {
-            emitter.emit(&#x27;link&#x27;, fdir, stat);
+        if (stat.isSymbolicLink() &amp;&amp; opts.followSymlinks) {
+            emitter.emit('link', fdir, stat);
             emitter._pending ++;
             fs.readlink(dir, function (err, rfile) {
                 if (emitter._stopped) return;
                 emitter._pending --;
                 if (err) {
                     if (!err.path) err.path = dir;
-                    emitter.emit(&#x27;error&#x27;, err);
+                    emitter.emit('error', err);
                     return check();
                 }
                 var file_ = path.resolve(dir, rfile);
-                emitter.emit(&#x27;readlink&#x27;, fdir, file_);
+                emitter.emit('readlink', fdir, file_);
                 emitter._pending ++;
                 fs.lstat(file_, function (err, stat) {
                     emitter._pending --;
@@ -154,16 +147,16 @@
             });
         }
         else if (stat.isSymbolicLink()) {
-            emitter.emit(&#x27;link&#x27;, fdir, stat);
-            emitter.emit(&#x27;path&#x27;, fdir, stat);
+            emitter.emit('link', fdir, stat);
+            emitter.emit('path', fdir, stat);
             check();
         }
         else if (stat.isDirectory()) {
             var stopped = false;
-            emitter.emit(&#x27;directory&#x27;, fdir, stat, function stop () {
+            emitter.emit('directory', fdir, stat, function stop () {
                 stopped = true;
             });
-            emitter.emit(&#x27;path&#x27;, fdir, stat);
+            emitter.emit('path', fdir, stat);
             if (!stopped) {
                 emitter._pending ++;
                 fs.readdir(dir, function (err, files) {
@@ -174,8 +167,8 @@
             else check()
         }
         else {
-            emitter.emit(&#x27;file&#x27;, fdir, stat);
-            emitter.emit(&#x27;path&#x27;, fdir, stat);
+            emitter.emit('file', fdir, stat);
+            emitter.emit('path', fdir, stat);
             check();
         }
     }
@@ -187,7 +180,7 @@
     }
 
     function finish () {
-        emitter.emit(&#x27;end&#x27;);
+        emitter.emit('end');
         emitter._stopped = true;
     }
 
@@ -196,7 +189,7 @@
 
         if (err) {
             if (!err.path) err.path = dir;
-            emitter.emit(&#x27;error&#x27;, err);
+            emitter.emit('error', err);
             return check();
         }
 
@@ -210,7 +203,7 @@
                 if (emitter._stopped) return;
                 if (err) {
                     if (!err.path) err.path = file;
-                    emitter.emit(&#x27;error&#x27;, err);
+                    emitter.emit('error', err);
                     check()
                 }
                 else onstat(file, stat)
@@ -236,3 +229,4 @@
     ]
 </div>
 </div>
+</body></html>
