@@ -1,6 +1,6 @@
 # npmdoc-findit
 
-#### api documentation for  [findit (v2.0.0)](https://github.com/substack/node-findit)  [![npm package](https://img.shields.io/npm/v/npmdoc-findit.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-findit) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-findit.svg)](https://travis-ci.org/npmdoc/node-npmdoc-findit)
+#### basic api documentation for  [findit (v2.0.0)](https://github.com/substack/node-findit)  [![npm package](https://img.shields.io/npm/v/npmdoc-findit.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-findit) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-findit.svg)](https://travis-ci.org/npmdoc/node-npmdoc-findit)
 
 #### walk a directory tree recursively with events
 
@@ -65,7 +65,8 @@
     "scripts": {
         "test": "tap test/*.js"
     },
-    "version": "2.0.0"
+    "version": "2.0.0",
+    "bin": {}
 }
 ```
 
